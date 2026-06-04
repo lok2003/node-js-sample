@@ -21,8 +21,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Upload Artifact
+      - name: Create app Artifact
+        run: |
+         zip -r nodejs-app.zip . \
+         -x "node_modules/* " \
+         -x ".git/*"
+      - name: Create Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nodejs-artifact
-          path: .
+          name: node-js-sample
+          path: nodejs-app.zip
